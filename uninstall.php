@@ -2,7 +2,7 @@
 /**
  * Fired when the plugin is uninstalled.
  *
- * @package   Plugin_Name
+ * @package   Sunny_Demo
  * @author    Your Name <email@example.com>
  * @license   GPL-2.0+
  * @link      http://example.com
