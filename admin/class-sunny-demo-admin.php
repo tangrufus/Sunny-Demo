@@ -80,6 +80,11 @@ class Sunny_Demo_Admin {
 		$plugin_basename = plugin_basename( plugin_dir_path( realpath( dirname( __FILE__ ) ) ) . $this->plugin_slug . '.php' );
 		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
 
+		// Load includes
+		add_action( 'admin_init', array( $this, 'load_includes' ) );
+
+		// Add the option settings
+		add_action( 'admin_init', array( 'Sunny_Demo_Option', 'get_instance' ) );
 		/*
 		 * Define custom functionality.
 		 *
@@ -174,21 +179,10 @@ class Sunny_Demo_Admin {
 
 		/*
 		 * Add a settings page for this plugin to the Settings menu.
-		 *
-		 * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-		 *
-		 *        Administration Menus: http://codex.wordpress.org/Administration_Menus
-		 *
-		 * @TODO:
-		 *
-		 * - Change 'Page Title' to the title of your plugin admin page
-		 * - Change 'Menu Text' to the text for menu item for the plugin settings page
-		 * - Change 'manage_options' to the capability you see fit
-		 *   For reference: http://codex.wordpress.org/Roles_and_Capabilities
 		 */
 		$this->plugin_screen_hook_suffix = add_options_page(
-			__( 'Page Title', $this->plugin_slug ),
-			__( 'Menu Text', $this->plugin_slug ),
+			__( 'Sunny Demo Settings', $this->plugin_slug ),
+			__( 'Sunny Demo', $this->plugin_slug ),
 			'manage_options',
 			$this->plugin_slug,
 			array( $this, 'display_plugin_admin_page' )
@@ -219,6 +213,15 @@ class Sunny_Demo_Admin {
 			$links
 		);
 
+	}
+
+	/**
+   	 * This function loads files in the admin/includes directory
+   	 *
+   	 * @since 1.0.0
+   	 */
+	public function load_includes() {
+		require_once( 'includes/class-sunny-demo-option.php' );
 	}
 
 	/**
