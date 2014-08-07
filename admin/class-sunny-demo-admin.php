@@ -3,9 +3,9 @@
  * Plugin Name.
  *
  * @package   Sunny_Demo_Admin
- * @author    Your Name <email@example.com>
+ * @author    Tang Rufus <tangrufus@gmail.com>
  * @license   GPL-2.0+
- * @link      http://example.com
+ * @link      http://tangrufus.com/wordpress-plugin-boilerplate-tutorial-hooks-and-http-api
  * @copyright 2014 Your Name or Company Name
  */
 
@@ -85,14 +85,8 @@ class Sunny_Demo_Admin {
 
 		// Add the option settings
 		add_action( 'admin_init', array( 'Sunny_Demo_Option', 'get_instance' ) );
-		/*
-		 * Define custom functionality.
-		 *
-		 * Read more about actions and filters:
-		 * http://codex.wordpress.org/Plugin_API#Hooks.2C_Actions_and_Filters
-		 */
-		add_action( '@TODO', array( $this, 'action_method_name' ) );
-		add_filter( '@TODO', array( $this, 'filter_method_name' ) );
+
+		add_action( 'save_post', array( 'Sunny_Demo_Post_Purger', 'get_instance' ), 5 );
 
 	}
 
@@ -216,38 +210,14 @@ class Sunny_Demo_Admin {
 	}
 
 	/**
-   	 * This function loads files in the admin/includes directory
-   	 *
-   	 * @since 1.0.0
-   	 */
+	 * This function loads files in the admin/includes directory
+	 *
+	 * @since 1.0.0
+	 */
 	public function load_includes() {
 		require_once( 'includes/class-sunny-demo-option.php' );
+		require_once( 'includes/class-sunny-demo-post-purger.php' );
+		require_once( 'includes/class-sunny-demo-api-logger.php' );
+		require_once( 'includes/class-sunny-demo-purger.php' );
 	}
-
-	/**
-	 * NOTE:     Actions are points in the execution of a page or process
-	 *           lifecycle that WordPress fires.
-	 *
-	 *           Actions:    http://codex.wordpress.org/Plugin_API#Actions
-	 *           Reference:  http://codex.wordpress.org/Plugin_API/Action_Reference
-	 *
-	 * @since    1.0.0
-	 */
-	public function action_method_name() {
-		// @TODO: Define your action hook callback here
-	}
-
-	/**
-	 * NOTE:     Filters are points of execution in which WordPress modifies data
-	 *           before saving it or sending it to the browser.
-	 *
-	 *           Filters: http://codex.wordpress.org/Plugin_API#Filters
-	 *           Reference:  http://codex.wordpress.org/Plugin_API/Filter_Reference
-	 *
-	 * @since    1.0.0
-	 */
-	public function filter_method_name() {
-		// @TODO: Define your filter hook callback here
-	}
-
 }
