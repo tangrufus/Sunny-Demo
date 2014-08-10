@@ -83,7 +83,9 @@ add_action( 'plugins_loaded', array( 'Sunny_Demo', 'get_instance' ) );
  *
  * The code below is intended to to give the lightest footprint possible.
  */
-if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+// if ( is_admin() && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
+
+if ( is_admin() ) {
 
 	require_once( plugin_dir_path( __FILE__ ) . 'admin/class-sunny-demo-admin.php' );
 	add_action( 'plugins_loaded', array( 'Sunny_Demo_Admin', 'get_instance' ) );

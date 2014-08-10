@@ -16,10 +16,6 @@
  * If you're interested in introducing public-facing
  * functionality, then refer to `class-sunny-demo.php`
  *
- * @TODO: Rename this class to a proper name for your plugin.
- *
- * @package Sunny_Demo_Admin
- * @author  Your Name <email@example.com>
  */
 class Sunny_Demo_Admin {
 
@@ -85,6 +81,7 @@ class Sunny_Demo_Admin {
 
 		// Add the option settings
 		add_action( 'admin_init', array( 'Sunny_Demo_Option', 'get_instance' ) );
+		add_action( 'admin_init', array( 'Sunny_Demo_URL_Purger', 'get_instance' ) );
 
 		add_action( 'save_post', array( 'Sunny_Demo_Post_Purger', 'get_instance' ), 5 );
 
@@ -219,5 +216,6 @@ class Sunny_Demo_Admin {
 		require_once( 'includes/class-sunny-demo-post-purger.php' );
 		require_once( 'includes/class-sunny-demo-api-logger.php' );
 		require_once( 'includes/class-sunny-demo-purger.php' );
+		require_once( 'includes/class-sunny-demo-url-purger.php' );
 	}
 }
